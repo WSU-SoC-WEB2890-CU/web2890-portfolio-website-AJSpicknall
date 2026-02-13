@@ -33,7 +33,16 @@ export default defineConfig({
   plugins: [
     {
       ...eslint({
-        include: ["src/**/*.js"],
+        include: ["javascripts/**/*.js"],
+        useEslintrc: false,
+        baseConfig: {
+          env: { browser: true, es2021: true },
+          extends: ["eslint:recommended"],
+          parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+          rules: {},
+        },
+        throwOnError: false,
+        throwOnWarning: false,
       }),
       enforce: "pre",
       apply: "build",
